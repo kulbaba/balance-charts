@@ -1,0 +1,11 @@
+<div class="chart" *ngIf="(resultByDate$ | async) as resultByDate">
+  <canvas class="custom-chart" baseChart
+          [datasets]="resultByDate.data"
+          [labels]="resultByDate.labels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="'line'"
+          [plugins]="lineChartPlugins">
+  </canvas>
+</div>

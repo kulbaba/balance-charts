@@ -1,0 +1,44 @@
+
+<div mat-dialog-title>
+  <h2 >Add new data</h2>
+</div>
+
+<div mat-dialog-content class="dialog__content">
+  <form [formGroup]="dataForm" (ngSubmit)="add()" fxLayout="column" fxFlexAlign="center center">
+
+    <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field appearance="outline">
+      <mat-label >Entry Date</mat-label>
+      <input matInput type="date" formControlName="entryDate">
+      <mat-error *ngIf="dataForm.get('entryDate').hasError('required')">'This field cannot be empty'"></mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Entry price</mat-label>
+      <input matInput type="number" formControlName="entryPrice">
+      <mat-error *ngIf="dataForm.get('entryPrice').hasError('required')">'This field cannot be empty'</mat-error>
+      <mat-error *ngIf="dataForm.get('entryPrice').hasError('min')">'Data cannot be less than 0'</mat-error>
+    </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field appearance="outline">
+      <mat-label> Exit date</mat-label>
+      <input type="date" matInput formControlName="exitDate">
+      <mat-error *ngIf="dataForm.get('exitDate').hasError('required')">'This field cannot be empty'</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Exip Price</mat-label>
+      <input type="number" matInput formControlName="exitPrice">
+      <mat-error *ngIf="dataForm.get('exitPrice').hasError('required')">'This field cannot be empty'</mat-error>
+      <mat-error *ngIf="dataForm.get('exitPrice').hasError('min')">'Data cannot be less than 0'</mat-error>
+    </mat-form-field>
+    </div>
+    <div class="dialog__button-group" fxLayout="row" fxLayoutAlign="space-around center" >
+
+      <button mat-flat-button mat-dialog-close type="button">Cancel</button>
+      <button mat-flat-button color="accent" type="submit"
+              [disabled]="dataForm.invalid">{{nameButton}}</button>
+      <mat-error *ngIf="dataForm.hasError('dateError') && dataForm.get('entryDate').touched && dataForm.get('exitDate').touched">'Exit date can not be less than entry date '</mat-error>
+    </div>
+  </form>
+</div>

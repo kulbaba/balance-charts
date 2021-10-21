@@ -1,0 +1,46 @@
+<div class="data-container">
+  <div fxLayout="column" fxLayoutAlign="space-around center" class="balance-container">
+    <button mat-raised-button color="accent" (click)="openAddModal()">Add new data</button>
+    <h2> Your result:{{balance$ | async}}</h2>
+  </div>
+
+
+  <table>
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Entry Date</th>
+      <th>Entry Price</th>
+      <th>Exit Date</th>
+      <th>Exit Price</th>
+      <th>Profit</th>
+      <th>Edit Trade</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let record of savedRecords$ | async">
+      <td *ngIf="record?.id">
+        {{record.id}}
+      </td>
+      <td *ngIf="record?.entryDate">
+        {{record.entryDate }}
+      </td>
+      <td *ngIf="record?.entryPrice">
+        {{record.entryPrice}}
+      </td>
+      <td *ngIf="record?.exitDate">
+        {{record.exitDate }}
+      </td>
+      <td *ngIf="record?.exitPrice">
+        {{record.exitPrice}}
+      </td>
+      <td *ngIf="record?.profit || record?.profit === 0 ">
+        {{record.profit }}
+      </td>
+      <td *ngIf="record">
+        <button mat-raised-button color="accent" (click)="openEditModal(record)">Edit</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

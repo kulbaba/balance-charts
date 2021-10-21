@@ -1,0 +1,15 @@
+.dialog {
+  &__content {
+    width: 500px;
+    margin: 0 auto;
+  }
+  &__button {
+    margin: 0 auto;
+  }
+  &__button-group{
+    width: 100%;
+  }
+}
+.mat-form-field{
+  min-width: 200px;
+}
